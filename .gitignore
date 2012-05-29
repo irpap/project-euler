@@ -1,5 +1,9 @@
 *.class
 
+*.hi
+*.o
+*.exe
+
 # Package Files #
 *.jar
 *.war
