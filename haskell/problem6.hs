@@ -1,10 +1,10 @@
-sumOfSquares::[Integer] -> Integer
+sumOfSquares::[Int] -> Int
 sumOfSquares xs = sum [square x | x <- xs ]
 
-squareOfSums:: [Integer] -> Integer
-squareOfSums xs = square $ sum xs
+squareOfSums:: [Int] -> Int
+squareOfSums xs = square $ last xs * (last xs + 1) `div` 2
 
-square:: Integer -> Integer
+square:: Num a=> a -> a
 square x = x * x
 
 main = do
