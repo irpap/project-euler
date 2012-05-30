@@ -6,7 +6,7 @@ public class Problem10 {
 
     public static long sumOfPrimesBelow(int n) {
         long sum = 0;
-        boolean[] isPrime = new boolean[n];
+        boolean[] isPrime = new boolean[n+1];
         for (int i = 0; i < isPrime.length; i++) isPrime[i] = true;
         for (int j = 2; j < isPrime.length; j++) {
             int prime = j;
