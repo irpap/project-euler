@@ -7,7 +7,6 @@ public class Problem5 {
         int[] result = highestPowerOfEachPrimeFactor();
         int answer = 1;
         for (int i = 0; i < LIMIT; i++) {
-            if (result[i] != 0) System.out.println(i + " to the " + result[i] + " *");
             if (result[i] != 0) answer *= Math.pow(i, result[i]);
         }
         System.out.println(answer);
@@ -28,12 +27,11 @@ public class Problem5 {
                 return factors;
             }
         }
-
         return factors;
     }
 
-    static int[][] allDecompositions() {
-        int[][] all = new int[20][20];
+    static int[][] decomposeAllNumbers() {
+        int[][] all = new int[20][];
         for (int i = 0; i < LIMIT; i++) {
             all[i] = primeDecomposition(i, new int[LIMIT]);
         }
@@ -42,7 +40,7 @@ public class Problem5 {
 
     static int[] highestPowerOfEachPrimeFactor() {
         int[] result = new int[LIMIT];
-        int[][] allFactors = allDecompositions();
+        int[][] allFactors = decomposeAllNumbers();
         for (int i = 0; i < LIMIT; i++) {
             int max = 0;
             for (int j = 0; j < LIMIT; j++) {
