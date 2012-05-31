@@ -1,4 +1,5 @@
 import static java.lang.Integer.valueOf;
+import static java.lang.Math.*;
 
 public class Problem11 {
     static String input =
@@ -35,71 +36,32 @@ public class Problem11 {
     }
 
     public static void main(String[] args) {
-        System.out.println(max(horizontalMax(), verticalMax(), diagonal1Max(), diagonal2Max()));
+        System.out.println(maxProduct());
     }
 
-    private static int max(int a, int b, int c, int d) {
-        return Math.max(Math.max(Math.max(a, b), c), d);
+    private static int max5(int a, int b, int c, int d, int e) {
+        return max(max(max(max(a, b), c), d), e);
     }
 
-    public static int rowMax(String[] row) {
-        int max = 0;
-        for (int i = 0; i < row.length - 4; i++) {
-            int product = valueOf(row[i]) * valueOf(row[i + 1]) * valueOf(row[i + 2]) * valueOf(row[i + 3]);
-            if (product > max) max = product;
-        }
-        return max;
-    }
-
-    public static int horizontalMax() {
-        int max = 0;
-        for (String[] row : numbers) {
-            int rowMax = rowMax(row);
-            if (rowMax > max) max = rowMax;
-        }
-        return max;
-    }
-
-    public static int verticalMax() {
-        int max = 0;
-        for (int i = 0; i < numbers.length - 4; i++) {
-            for (int j = 0; j < numbers.length - 4; j++) {
-                int product = valueOf(numbers[j][i]) * valueOf(numbers[j + 1][i]) * valueOf(numbers[j + 2][i]) * valueOf(numbers[j + 3][i]);
-                if (product > max) max = product;
+    private static int maxProduct() {
+        int horizontal = -1, vertical = -1, diagonal1 = -1, diagonal2 = -1, max = 0;
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 20; j++) {
+                if (i + 3 < 20)
+                    vertical = num(i, j) * num(i + 1, j) * num(i + 2, j) * num(i + 3, j);
+                if (j + 3 < 20)
+                    horizontal = num(i, j) * num(i, j + 1) * num(i, j + 2) * num(i, j + 3);
+                if (i + 3 < 20 && j + 3 < 20)
+                    diagonal1 = num(i, j) * num(i + 1, j + 1) * num(i + 2, j + 2) * num(i + 3, j + 3);
+                if (i - 3 >= 0 && j + 3 < 20)
+                    diagonal2 = num(i, j) * num(i - 1, j + 1) * num(i - 2, j + 2) * num(i - 3, j + 3);
+                max = max5(horizontal, vertical, diagonal1, diagonal2, max);
             }
         }
         return max;
     }
 
-    public static int diagonal1Max() {
-        int max = 0;
-        for (int a = 3, b = 0; a >= 0 && a < 20 && b >= 0 && b < 20; a++)
-            for (int i = a, j = b; i >= 3 && i < 20 && j >= 0 && j < 17; i--, j++) {
-                int product = valueOf(numbers[i][j]) * valueOf(numbers[i - 1][j + 1]) * valueOf(numbers[i - 2][j + 2]) * valueOf(numbers[i - 3][j + 3]);
-                if (product > max) max = product;
-            }
-
-        for (int a = 19, b = 3; a >= 0 && a < 20 && b >= 0 && b < 20; b++)
-            for (int i = a, j = b; i >= 3 && i < 20 && j >= 0 && j < 17; i--, j++) {
-                int product = valueOf(numbers[i][j]) * valueOf(numbers[i - 1][j + 1]) * valueOf(numbers[i - 2][j + 2]) * valueOf(numbers[i - 3][j + 3]);
-                if (product > max) max = product;
-            }
-        return max;
-    }
-
-    public static int diagonal2Max() {
-        int max = 0;
-        for (int a = 3, b = 19; a >= 0 && a < 20 && b >= 0 && b < 20; a++)
-            for (int i = a, j = b; i >= 0 && i < 17 && j >= 3 && j < 20; i++, j--) {
-                int product = valueOf(numbers[i][j]) * valueOf(numbers[i + 1][j - 1]) * valueOf(numbers[i + 2][j - 2]) * valueOf(numbers[i + 3][j - 3]);
-                if (product > max) max = product;
-            }
-
-        for (int a = 19, b = 19; a >= 3 && a < 20 && b >= 3 && b < 20; b--)
-            for (int i = a, j = b; i >= 3 && i < 20 && j >= 3 && j < 20; i--, j--) {
-                int product = valueOf(numbers[i][j]) * valueOf(numbers[i - 1][j - 1]) * valueOf(numbers[i - 2][j - 2]) * valueOf(numbers[i - 3][j - 3]);
-                if (product > max) max = product;
-            }
-        return max;
+    private static int num(int i, int j) {
+        return valueOf(numbers[i][j]);
     }
 }
