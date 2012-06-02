@@ -6,8 +6,9 @@ public class Problem12 {
     public static int triangleNumberWith500Divisors() {
         for (int number = 0, n = 0; ; n++, number += n) {
             int divisors = 0;
-            for (int i = 1; i < Math.sqrt(number); i++) {
+            for (int i = 1; i <= Math.sqrt(number); i++) {
                 if (number % i == 0) divisors += 2;
+                if (i*i==number) divisors--; //correction for a perfect square
             }
             if (divisors > 500) return number;
         }
