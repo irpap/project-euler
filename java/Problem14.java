@@ -15,26 +15,23 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 */
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class Problem14 {
-    static HashMap<Long, Long> lengths = new HashMap<Long, Long>(1000000);
+    static HashMap<Long, Integer> lengths = new HashMap<Long, Integer>(1000000);
 
-    public static Long lengthOfChain(long n) {
+    public static int lengthOfChain(long n) {
         long next = n;
-        long length = -1;
+        int length = -1;
         if (n == 1) {
-            lengths.put(1L, 1L);
-            return 1L;
+            lengths.put(1L, 1);
+            return 1;
         }
         while (true) {
             length++;
-
             if (lengths.containsKey(next)) {
-
-                lengths.put(n, length + lengths.get(next));
-                return length + lengths.get(next);
+                int l = length + lengths.get(next);
+                lengths.put(n, l);
+                return l;
             }
             if (next % 2 == 0) {
                 next = next / 2;
@@ -42,30 +39,23 @@ public class Problem14 {
                 next = 3 * next + 1;
             }
         }
-
     }
 
     private static void numberWithLongestChain(int limit) {
+        long candidate = 0;
         long max = 0;
         for (int i = 1; i <= limit; i++) {
-            Long length = lengthOfChain(i);
-            if (length > max) max = length;
-        }
-
-        System.out.println("longest chain is " + max);
-        Set<Map.Entry<Long, Long>> entries = lengths.entrySet();
-        for (Map.Entry e : entries) {
-            if ((Long) e.getValue() == max) {
-                System.out.println("for key " + e.getKey());
-                break;
+            int length = lengthOfChain(i);
+            if (length > max) {
+                max = length;
+                candidate = i;
             }
-
         }
+        System.out.println("longest chain is " + max + " for " + candidate);
     }
 
     public static void main(String[] args) {
         final long startTime = System.nanoTime();
-
         numberWithLongestChain(1000000);
         final long duration = System.nanoTime() - startTime;
         System.out.println(duration + "  ns");
