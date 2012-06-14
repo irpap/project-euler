@@ -18,14 +18,11 @@ import java.util.HashMap;
 
 public class Problem14 {
     static HashMap<Long, Integer> lengths = new HashMap<Long, Integer>(1000000);
+    static { lengths.put(1L, 1); }
 
     public static int lengthOfChain(long n) {
         long next = n;
         int length = -1;
-        if (n == 1) {
-            lengths.put(1L, 1);
-            return 1;
-        }
         while (true) {
             length++;
             if (lengths.containsKey(next)) {
