@@ -1,5 +1,5 @@
 import static java.lang.Integer.valueOf;
-import static java.lang.Math.*;
+import static java.lang.Math.max;
 
 public class Problem11 {
     static String input =
