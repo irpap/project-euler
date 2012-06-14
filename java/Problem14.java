@@ -17,10 +17,8 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 import java.util.HashMap;
 
 public class Problem14 {
-    static HashMap<Long, Integer> lengths = new HashMap<Long, Integer>(1000000);
-    static { lengths.put(1L, 1); }
 
-    public static int lengthOfChain(long n) {
+    public static int chainLength(long n, HashMap<Long, Integer> lengths) {
         long next = n;
         int length = -1;
         while (true) {
@@ -38,11 +36,13 @@ public class Problem14 {
         }
     }
 
-    private static void numberWithLongestChain(int limit) {
+        private static void longestCollatzChain(int limit) {
+        HashMap<Long, Integer> lengths = initialisedLengthsMap(limit);
+
         long candidate = 0;
         long max = 0;
         for (int i = 1; i <= limit; i++) {
-            int length = lengthOfChain(i);
+            int length = chainLength(i, lengths);
             if (length > max) {
                 max = length;
                 candidate = i;
@@ -51,9 +51,15 @@ public class Problem14 {
         System.out.println("longest chain is " + max + " for " + candidate);
     }
 
+    private static HashMap<Long, Integer> initialisedLengthsMap(int limit) {
+        HashMap<Long, Integer> lengths = new HashMap<Long, Integer>(limit);
+        lengths.put(1L, 1);
+        return lengths;
+    }
+
     public static void main(String[] args) {
         final long startTime = System.nanoTime();
-        numberWithLongestChain(1000000);
+        longestCollatzChain(1000000);
         final long duration = System.nanoTime() - startTime;
         System.out.println(duration + "  ns");
 
