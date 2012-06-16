@@ -19,10 +19,9 @@
  */
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Problem15 {
-    static int WIDTH = 3;
+    static int WIDTH = 21;
     static int NUM_NODES = WIDTH * WIDTH;
     private static int paths = 0;
     static int UNDISCOVERED = 0;
@@ -36,18 +35,16 @@ public class Problem15 {
 
     public static void numberOfShortestPaths() {
         ArrayList<ArrayList<Integer>> adjacencyList = buildGraph();
-        boolean[] processed = new boolean[NUM_NODES];
-        DFS(0, 3, adjacencyList, processed);
+        DFS(0, NUM_NODES-1, adjacencyList);
     }
 
-    public static void DFS(int start, int end, ArrayList<ArrayList<Integer>> adjacencyList, boolean[] processed) {
+    public static void DFS(int start, int end, ArrayList<ArrayList<Integer>> adjacencyList) {
         if (start == end) {
             paths++;
             return;
         }
         for (int child : adjacencyList.get(start)) {
-            processed[child] = true;
-            DFS(child, end, adjacencyList, processed);
+            DFS(child, end, adjacencyList);
         }
 
     }
@@ -59,10 +56,10 @@ public class Problem15 {
             int rowEnd = i + WIDTH - i % WIDTH - 1;
 
             ArrayList<Integer> l = new ArrayList<Integer>();
-            if (i + 1 <= rowEnd) l.add(i + 1);
-            if (i - 1 >= rowStart) l.add(i - 1);
             if (i + WIDTH <= NUM_NODES - 1) l.add(i + WIDTH);
-            if (i - WIDTH >= 0) l.add(i - WIDTH);
+            if (i + 1 <= rowEnd) l.add(i + 1);
+//            if (i - WIDTH >= 0) l.add(i - WIDTH);
+//            if (i - 1 >= rowStart) l.add(i - 1);
 
             adjacencyList.add(l);
         }
