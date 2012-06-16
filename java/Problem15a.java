@@ -1,27 +1,7 @@
-/*
- * -----------------------------------------------------------------------
- *
- * QATARLYST LIMITED
- *
- * -----------------------------------------------------------------------
- *
- * (C) Copyright 2012 Qatarlyst Limited. All rights reserved.
- *
- * NOTICE:  All information contained herein or attendant hereto is,
- *          and remains, the property of Qatarlyst Limited.  Many of the
- *          intellectual and technical concepts contained herein are
- *          proprietary to Qatarlyst Limited. Any dissemination of this
- *          information or reproduction of this material is strictly
- *          forbidden unless prior written permission is obtained
- *          from Qatarlyst Limited.
- *
- * -----------------------------------------------------------------------
- */
-
 import java.util.ArrayList;
 
 public class Problem15a {
-    static int WIDTH = 16;
+    static int WIDTH = 14;
     static int NUM_NODES = WIDTH * WIDTH;
     private static long paths = 0;
 
@@ -56,17 +36,6 @@ public class Problem15a {
 
             adjacencyList.add(l);
         }
-        int j = 0;
-        for (ArrayList<Integer> list : adjacencyList) {
-            System.out.print("neighbors of " + j++ + ": ");
-            for (int i : list) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
-        }
-
-
         return adjacencyList;
-
     }
 }

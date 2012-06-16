@@ -9,7 +9,6 @@ public class Problem15b {
 
     public static long centralBionomialCoeff(long[][] triangle, int i) {
         return triangle[(i - 1) * 2][i - 1];
-
     }
 
     public static long[][] pascalTriangle(int n) {
