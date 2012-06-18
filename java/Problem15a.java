@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * Doing a search on a directed graph
+ */
 public class Problem15a {
     static int WIDTH = 14;
     static int NUM_NODES = WIDTH * WIDTH;
