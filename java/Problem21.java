@@ -10,7 +10,7 @@ public class Problem21 {
 
     public static void main(String[] args) {
         long answer = sumOfAmicablePairs(10000);
-        System.out.println("The sum of all amicable pairs is " + answer); //account for counting each pair twice
+        System.out.println("The sum of all amicable pairs is " + answer);
     }
 
     private static int sumOfAmicablePairs(int upTo) {
@@ -22,7 +22,7 @@ public class Problem21 {
                 answer += a + b;
             }
         }
-        return answer / 2;
+        return answer / 2; //account for counting each pair twice
     }
 
     public static int sumOfProperDivisors(int n) {
