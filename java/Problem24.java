@@ -30,12 +30,6 @@ public class Problem24 {
 
         Arrays.sort(n, ms + 1, n.length);
         return n;
-
-    }
-
-    private static void printArray(int[] n) {
-        for (int i = 0; i < n.length; i++) System.out.print(n[i]);
-        System.out.println();
     }
 
     private static int ms(int[] n) {
@@ -58,4 +52,8 @@ public class Problem24 {
         return minLarger;
     }
 
+    private static void printArray(int[] n) {
+        for (int i = 0; i < n.length; i++) System.out.print(n[i]);
+        System.out.println();
+    }
 }
