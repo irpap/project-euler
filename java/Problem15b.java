@@ -1,3 +1,7 @@
+/**
+ * Calculating 40 choose 20
+ */
+
 public class Problem15b {
     public static int SIZE = 21;
 
