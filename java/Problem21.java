@@ -14,9 +14,8 @@ public class Problem21 {
         for (int i = 1; i < 10000; i++) {
             int a = sumOfProperDivisors(i);
             int b = sumOfProperDivisors(a);
-            if (a != b && i == b && a > 0 && b > 0) {
+            if (a != b && i == b) {
                 answer += a + b;
-                System.out.println("a is: " + a + " b is: " + b + " ");
             }
         }
         System.out.println("The sum of all amicable pairs is " + answer / 2); //account for counting each pair twice
