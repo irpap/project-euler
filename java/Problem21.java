@@ -10,15 +10,20 @@ public class Problem21 {
 
     public static void main(String[] args) {
         System.out.println(sumOfProperDivisors(220));
+        long answer = sumOfAmicablePairs(10000);
+        System.out.println("The sum of all amicable pairs is " + answer); //account for counting each pair twice
+    }
+
+    private static long sumOfAmicablePairs(int upTo) {
         long answer = 0;
-        for (int i = 1; i < 10000; i++) {
+        for (int i = 1; i < upTo; i++) {
             int a = sumOfProperDivisors(i);
             int b = sumOfProperDivisors(a);
             if (a != b && i == b) {
                 answer += a + b;
             }
         }
-        System.out.println("The sum of all amicable pairs is " + answer / 2); //account for counting each pair twice
+        return answer / 2;
     }
 
     public static int sumOfProperDivisors(int n) {
