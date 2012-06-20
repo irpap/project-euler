@@ -14,8 +14,8 @@ public class Problem21 {
         System.out.println("The sum of all amicable pairs is " + answer); //account for counting each pair twice
     }
 
-    private static long sumOfAmicablePairs(int upTo) {
-        long answer = 0;
+    private static int sumOfAmicablePairs(int upTo) {
+        int answer = 0;
         for (int i = 1; i < upTo; i++) {
             int a = sumOfProperDivisors(i);
             int b = sumOfProperDivisors(a);
